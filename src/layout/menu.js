@@ -1,4 +1,4 @@
-import { dashboardPath, postsPath, settingsPath } from "../constant/common";
+import { postsPath, settingsPath, subscriptionPath } from "../constant/common";
 
 function getItem(label, key, icon, children) {
   return {
@@ -10,7 +10,7 @@ function getItem(label, key, icon, children) {
 }
 
 export const MENUS = [
-  getItem("Dashboard", dashboardPath),
+  getItem("Dashboard", subscriptionPath),
   getItem("Posts Management", postsPath),
   getItem("Settings", settingsPath),
 ];
