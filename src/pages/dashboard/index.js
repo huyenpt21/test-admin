@@ -1,7 +1,8 @@
-import { Button, Col, Row } from "antd";
+import { Button, Row } from "antd";
 import React, { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { revenuePath, subscriptionPath } from "../../constant/common";
+import "../../index.css";
 import styles from "./index.module.css";
 
 export default function Dashboard() {
@@ -11,9 +12,9 @@ export default function Dashboard() {
     navigate(path);
   };
   return (
-    <>
+    <div className="container">
       <h1>Dashboard</h1>
-      <Row>
+      <Row className="mb-20">
         <Button
           type={menuType === 1 ? "primary" : "default"}
           onClick={() => {
@@ -34,9 +35,9 @@ export default function Dashboard() {
           Revenue
         </Button>
       </Row>
-      <div style={{ marginTop: "20px" }}>
+      <div>
         <Outlet />
       </div>
-    </>
+    </div>
   );
 }
