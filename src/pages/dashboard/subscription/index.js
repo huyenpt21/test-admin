@@ -1,8 +1,7 @@
-import React from "react";
-import { Line, G2 } from "@ant-design/plots";
-import { dataSubscription } from "../dataChart";
+import { G2, Line } from "@ant-design/plots";
 import { each, findIndex } from "@antv/util";
-import { subChartX, subscripttionChartY } from "../../../constant/common";
+import React from "react";
+import { dataSubscription } from "../dataChart";
 
 export default function Subscription() {
   const { InteractionAction, registerInteraction, registerAction } = G2;
