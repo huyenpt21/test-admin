@@ -4,20 +4,42 @@ import MainLayout from "./layout";
 import PostsManagement from "./pages/postsManagement";
 import Settings from "./pages/settings";
 import Dashboard from "./pages/dashboard";
+import {
+  dashboardPath,
+  postsPath,
+  revenuePath,
+  settingsPath,
+  subscriptionPath,
+} from "./constant/common";
+import Subscription from "./pages/dashboard/subscription";
+import Revenue from "./pages/dashboard/revenue";
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "",
       element: <MainLayout />,
       children: [
-        { path: "", element: <Dashboard /> },
         {
-          path: "/posts",
+          path: dashboardPath,
+          element: <Dashboard />,
+          children: [
+            {
+              path: subscriptionPath,
+              element: <Subscription />,
+            },
+            {
+              path: revenuePath,
+              element: <Revenue />,
+            },
+          ],
+        },
+        {
+          path: postsPath,
           element: <PostsManagement />,
         },
         {
-          path: "/settings",
+          path: settingsPath,
           element: <Settings />,
         },
       ],

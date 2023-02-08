@@ -8,8 +8,8 @@ const MainLayout = () => {
   const { Content, Sider } = Layout;
   const currentPath = useRef(location.pathname);
   return (
-    <Layout theme>
-      <Sider>
+    <Layout theme={"light"}>
+      <Sider theme={"light"}>
         <Menu
           items={MENUS}
           selectedKeys={currentPath.current}
