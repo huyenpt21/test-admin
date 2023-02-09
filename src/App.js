@@ -1,5 +1,5 @@
 import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "./layout";
 import PostsManagement from "./pages/postsManagement";
 import Settings from "./pages/settings";
@@ -15,7 +15,7 @@ import Subscription from "./pages/dashboard/subscription";
 import Revenue from "./pages/dashboard/revenue";
 
 function App() {
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       path: "",
       element: <MainLayout />,
