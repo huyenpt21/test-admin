@@ -78,9 +78,7 @@ export default function Settings() {
               label="Active Date"
               name="activeDate"
               required
-              rules={[
-                { required: true, message: "Active date corlor is required" },
-              ]}
+              rules={[{ required: true, message: "Active date is required" }]}
             >
               <DatePicker showTime />
             </Form.Item>
