@@ -112,7 +112,11 @@ export default function PostsManagement() {
           />
         </Col>
       </Row>
-      <Table columns={columns} dataSource={dataTable} />
+      <Table
+        columns={columns}
+        dataSource={dataTable}
+        rowKey={(record) => record?.id}
+      />
       {openPopup && (
         <Modal
           title="Detail post"
@@ -121,7 +125,7 @@ export default function PostsManagement() {
           onOk={handleClosePopup}
         >
           <h4>User ID: {detailPost?.userId}</h4>
-          <h4>{detailPost?.title}</h4>
+          <h4>Title: {detailPost?.title}</h4>
           <p>{detailPost?.body}</p>
         </Modal>
       )}

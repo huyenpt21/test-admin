@@ -31,52 +31,52 @@ export const dataSubscription = [
 
 export const dataRevenue = [
   {
-    month: "01/2023",
+    month: "01/2022",
     value: 60,
   },
   {
-    month: "02/2023",
+    month: "02/2022",
     value: 80,
   },
   {
-    month: "03/2023",
+    month: "03/2022",
     value: 120,
   },
   {
-    month: "04/2023",
+    month: "04/2022",
     value: 140,
   },
   {
-    month: "05/2023",
+    month: "05/2022",
     value: 250,
   },
   {
-    month: "06/2023",
+    month: "06/2022",
     value: 120,
   },
   {
-    month: "07/2023",
+    month: "07/2022",
     value: 85,
   },
 
   {
-    month: "08/2023",
+    month: "08/2022",
     value: 145,
   },
   {
-    month: "09/2023",
+    month: "09/2022",
     value: 100,
   },
   {
-    month: "10/2023",
+    month: "10/2022",
     value: 85,
   },
   {
-    month: "11/2023",
+    month: "11/2022",
     value: 150,
   },
   {
-    month: "12/2023",
+    month: "12/2022",
     value: 180,
   },
 ];

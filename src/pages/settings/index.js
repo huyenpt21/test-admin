@@ -2,14 +2,21 @@ import { Button, Col, DatePicker, Form, Input, Row } from "antd";
 import React, { useState } from "react";
 
 export default function Settings() {
-  const [colorPicked, setColorPicked] = useState();
+  const [colorPicked, setColorPicked] = useState("");
   const [formSetting] = Form.useForm();
   const handleChangeColor = (e) => {
+    setColorPicked(e.target.value);
+  };
+  const handleChangeBGColor = (e) => {
+    if (e.target.value.trim()) {
+      formSetting.setFieldValue("color", e.target.value);
+    }
     setColorPicked(e.target.value);
   };
   const handleSubmitForm = (value) => {
     console.log(value);
   };
+
   return (
     <div className="container">
       <h1>Settings</h1>
@@ -21,53 +28,77 @@ export default function Settings() {
       >
         <Row gutter={32}>
           <Col span={6}>
-            <Form.Item label="Title" name="title">
+            <Form.Item
+              label="Title"
+              name="title"
+              required
+              rules={[{ required: true, message: "Title is required" }]}
+            >
               <Input />
             </Form.Item>
           </Col>
           <Col span={6}>
-            <Form.Item label="Email" name="email">
+            <Form.Item
+              label="Email"
+              name="email"
+              required
+              rules={[{ required: true, message: "Email is required" }]}
+            >
               <Input type="email" />
             </Form.Item>
           </Col>
         </Row>
         <Row gutter={32}>
           <Col span={6}>
-            <Form.Item label="Background Color" name="backgroundColor">
-              <Input style={{ color: colorPicked }} />
+            <Form.Item
+              label="Background Color"
+              name="backgroundColor"
+              required
+              rules={[
+                { required: true, message: "Background color is required" },
+              ]}
+            >
+              <Input
+                style={{ color: colorPicked }}
+                onChange={handleChangeBGColor}
+              />
             </Form.Item>
           </Col>
           <Col span={2}>
             <Form.Item label="Color" name="color">
-              <Input type="color" onChange={handleChangeColor} />
+              <Input
+                name="colorPicker"
+                type="color"
+                onChange={handleChangeColor}
+              />
             </Form.Item>
           </Col>
           <Col span={6}>
-            <Form.Item label="Active Date" name="activeDate">
-              <DatePicker />
+            <Form.Item
+              label="Active Date"
+              name="activeDate"
+              required
+              rules={[
+                { required: true, message: "Active date corlor is required" },
+              ]}
+            >
+              <DatePicker showTime />
             </Form.Item>
           </Col>
         </Row>
-        <Row gutter={32}>
-          <Form.Item shouldUpdate style={{ marginLeft: "16px" }}>
-            {() => (
-              <Button
-                type="primary"
-                htmlType="submit"
-                disabled={
-                  !formSetting.isFieldsTouched([
-                    "title",
-                    "email",
-                    "backgroundColor",
-                    "activeDate",
-                  ])
-                }
-              >
+        <Form.Item shouldUpdate>
+          {() =>
+            formSetting.isFieldsTouched([
+              "title",
+              "email",
+              "backgroundColor",
+            ]) && (
+              <Button type="primary" htmlType="submit">
                 Save
               </Button>
-            )}
-          </Form.Item>
-        </Row>
+            )
+          }
+        </Form.Item>
       </Form>
     </div>
   );
