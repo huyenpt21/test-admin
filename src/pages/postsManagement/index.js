@@ -1,8 +1,8 @@
 import { Col, Input, Modal, Row, Table, Tooltip } from "antd";
-import React, { useEffect, useRef, useState } from "react";
-import SvgIcon from "../../components/svgIcon";
-import { APIPOST } from "../../constant/common";
-import "../../index.css";
+import { useEffect, useRef, useState } from "react";
+import postApi from "api/postApi";
+import SvgIcon from "components/svgIcon";
+import "index.css";
 
 export default function PostsManagement() {
   const [dataTable, setDataTable] = useState([]);
@@ -43,12 +43,15 @@ export default function PostsManagement() {
   ];
   //get data table
   useEffect(() => {
-    fetch(APIPOST)
-      .then((response) => response.json())
-      .then((data) => setDataTable(data))
-      .catch((error) => {
-        console.error(error);
-      });
+    const getPostsList = async () => {
+      try {
+        const respone = await postApi.getAll();
+        setDataTable(respone);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getPostsList();
   }, []);
 
   //clear set timeout when component was unmounted
@@ -61,31 +64,39 @@ export default function PostsManagement() {
   }, []);
 
   const handleChangeSearch = (e, searchField) => {
-    const value = e.target.value;
-    let url = APIPOST;
-    if (value?.trim()) {
-      url = url.concat(`?${searchField}=${value}`);
-    }
-    //clear previous setTimeout
+    const params = {
+      [searchField]: !!e.target.value.trim()
+        ? e.target.value.trim()
+        : undefined,
+    };
+    //Clear previous timeout id
     if (searchTerm.current) {
       clearTimeout(searchTerm.current);
     }
     searchTerm.current = setTimeout(() => {
-      fetch(url)
-        .then((response) => response.json())
-        .then((data) => setDataTable(data))
-        .catch((error) => {
-          console.error(error);
-        });
+      const getListFiltered = async () => {
+        try {
+          const response = await postApi.getAll(params);
+          setDataTable(response);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      getListFiltered();
     }, 300);
   };
 
   const handleOpenPopup = (record) => {
     setOpenPopup(true);
-    fetch(APIPOST.concat(`?id=${record?.id}`))
-      .then((response) => response.json())
-      .then((data) => setDetailPost(data[0]))
-      .catch((error) => console.error(error));
+    const getDetailPost = async () => {
+      try {
+        const response = await postApi.getPost(record.id);
+        setDetailPost(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getDetailPost();
   };
 
   const handleClosePopup = () => {

@@ -1,8 +1,8 @@
 import { Button, Row } from "antd";
 import React, { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { revenuePath, subscriptionPath } from "../../constant/common";
-import "../../index.css";
+import { revenuePath, subscriptionPath } from "constant/common";
+import "index.css";
 import styles from "./index.module.css";
 
 export default function Dashboard() {
